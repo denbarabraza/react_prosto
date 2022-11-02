@@ -1,26 +1,70 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {Accordion} from "./components/Accordion/Accordion";
+import {UnControlledAccordion} from "./components/UnControlledAccordion/UnControlledAccordion";
+import {RatingValueType, UnControlledRating} from "./components/UnControlledRating/UnControlledRating";
+import {Rating} from "./components/Rating/Rating";
+import {OnOff} from "./components/OnOff/OnOff";
+import {UnControlledOnOff} from "./components/OnOff/UnControlledOnOff";
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    console.log("App rendering...")
+
+    const [collapsed, setCollapsed]=useState<boolean>(false)
+    const [rating, setRating]=useState<RatingValueType>(1)
+    const [status, setStatus]=useState<boolean>(false)
+
+    const changeCollapse=()=>setCollapsed(!collapsed)
+    const changeRating=(num:RatingValueType)=>setRating(num)
+    const changeStatus=(st:boolean)=>setStatus(st)
+
+    return (
+        <div>
+            <PageTitle title={'This is APP component!'}/>
+            <PageTitle title={'Let\'s go'}/>
+            Article 1
+            <UnControlledOnOff/>
+            <UnControlledAccordion titleValue={'Menu 1'}/>
+            <UnControlledRating/>
+
+            <Accordion
+                titleValue={'Menu 1'}
+                collapsed={collapsed}
+                onChange={changeCollapse}
+            />
+            <Rating
+                value={rating}
+                onClick={(num)=>changeRating(num)}
+            />
+            <OnOff
+                status={status}
+                changeStatus={(st)=>changeStatus(st)}
+            />
+
+
+            {/*<PageTitle title={'This is APP component!'}/>
+            <PageTitle title={'Let\'s go'}/>
+            Article 1
+            <Rating value={1}/>
+            <Accordion titleValue={'Menu 1'} collapse={false}/>
+            <Accordion titleValue={'Menu 2'} collapse={true}/>
+            Article 2
+            <Rating value={5}/>*/}
+        </div>
+    );
+}
+
+type PageTitlePropsType = {
+    title: string;
+}
+
+function PageTitle(props: PageTitlePropsType) {
+    console.log("AppTittle rendering...")
+    return (
+        <h1>--- {props.title} ---</h1>
+    )
 }
 
 export default App;
