@@ -1,6 +1,6 @@
 import React from "react";
 
-type OnOFPropsType = {
+export type OnOFPropsType = {
     status: boolean
     changeStatus: (st:boolean) => void
 }

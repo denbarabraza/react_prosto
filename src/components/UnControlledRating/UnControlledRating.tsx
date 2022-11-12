@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 type RatingPropsType = {}
-export type RatingValueType = 1 | 2 | 3 | 4 | 5
+export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5
 
 export function UnControlledRating(props: RatingPropsType) {
     console.log("Rating rendering...")

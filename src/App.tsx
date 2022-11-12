@@ -42,16 +42,6 @@ function App() {
                 status={status}
                 changeStatus={(st)=>changeStatus(st)}
             />
-
-
-            {/*<PageTitle title={'This is APP component!'}/>
-            <PageTitle title={'Let\'s go'}/>
-            Article 1
-            <Rating value={1}/>
-            <Accordion titleValue={'Menu 1'} collapse={false}/>
-            <Accordion titleValue={'Menu 2'} collapse={true}/>
-            Article 2
-            <Rating value={5}/>*/}
         </div>
     );
 }

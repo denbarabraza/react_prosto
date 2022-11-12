@@ -1,20 +1,23 @@
 import React from "react";
 
-type AccordionPropsType = {
+export type AccordionPropsType = {
     titleValue: string
+    /**
+     * if collapsed===false => Body
+     */
     collapsed: boolean
-    onChange: ()=>void
+    onChange: () => void
 }
 
 export function Accordion(props: AccordionPropsType) {
 
-      return (
+    return (
         <div>
             <AccordionTitle
                 title={props.titleValue}
                 onChange={props.onChange}
             />
-            { !props.collapsed && <AccordionBody/>}
+            {!props.collapsed && <AccordionBody/>}
             {/*//если true, то body не отрисуется, значит свернут*/}
         </div>
     );
@@ -23,7 +26,7 @@ export function Accordion(props: AccordionPropsType) {
 
 type AccordionTitlePropsType = {
     title: string;
-    onChange: ()=>void;
+    onChange: () => void;
 }
 
 function AccordionTitle(props: AccordionTitlePropsType) {
