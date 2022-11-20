@@ -1,5 +1,10 @@
 import React from "react";
 
+export type ItemsPropsType={
+    id:number
+    name:string
+    value:string
+}
 export type AccordionPropsType = {
     titleValue: string
     /**
@@ -7,6 +12,8 @@ export type AccordionPropsType = {
      */
     collapsed: boolean
     onChange: () => void
+    items: ItemsPropsType[]
+    changeTitle:(value:string)=>void
 }
 
 export function Accordion(props: AccordionPropsType) {
@@ -17,7 +24,11 @@ export function Accordion(props: AccordionPropsType) {
                 title={props.titleValue}
                 onChange={props.onChange}
             />
-            {!props.collapsed && <AccordionBody/>}
+            {!props.collapsed &&
+                <AccordionBody
+                items={props.items}
+                changeTitle={props.changeTitle}
+                />}
             {/*//если true, то body не отрисуется, значит свернут*/}
         </div>
     );
@@ -25,8 +36,8 @@ export function Accordion(props: AccordionPropsType) {
 
 
 type AccordionTitlePropsType = {
-    title: string;
-    onChange: () => void;
+    title: string
+    onChange: () => void
 }
 
 function AccordionTitle(props: AccordionTitlePropsType) {
@@ -36,13 +47,25 @@ function AccordionTitle(props: AccordionTitlePropsType) {
     )
 }
 
-function AccordionBody() {
+type AccordionBodyPropsType={
+    items: ItemsPropsType[]
+    changeTitle:(value:string)=>void
+}
+
+function AccordionBody(props:AccordionBodyPropsType) {
     console.log("AccordionBody rendering...")
+
+    const onClickTitleChangeHandler=(value:string)=>{
+        props.changeTitle(value)
+    }
+
     return (
         <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
+            {props.items.map((e)=>{
+                return(
+                    <li key={e.id} onClick={()=>onClickTitleChangeHandler(e.name)}>{e.name}</li>
+                )
+            })}
         </ul>
     )
 }

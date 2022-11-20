@@ -21,7 +21,10 @@ emptyAccordion.args = {
 
 const TemplateBig: Story<AccordionPropsType> = (args) => {
     const [collapsed, setCollapsed] = useState<boolean>(false)
-    return <Accordion {...args} collapsed={collapsed} onChange={() => setCollapsed(!collapsed)}/>
+    return <Accordion
+        {...args}
+        collapsed={collapsed}
+        onChange={() => setCollapsed(!collapsed)}/>
 }
 export const AccordionModeChang = TemplateBig.bind({})
 AccordionModeChang.args = {

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import './App.css';
 import {Accordion} from "./components/Accordion/Accordion";
 import {UnControlledAccordion} from "./components/UnControlledAccordion/UnControlledAccordion";
@@ -6,33 +6,60 @@ import {RatingValueType, UnControlledRating} from "./components/UnControlledRati
 import {Rating} from "./components/Rating/Rating";
 import {OnOff} from "./components/OnOff/OnOff";
 import {UnControlledOnOff} from "./components/OnOff/UnControlledOnOff";
-
+import Select from "./components/Select/Select";
 
 
 function App() {
     console.log("App rendering...")
 
+    const items=[
+        {id:1, name:"Dima", value:"1"},
+        {id:2, name:"Den", value:'2'},
+        {id:3, name:"Yana", value:'3'},
+        {id:4, name:"Viktor", value:'4'},
+        {id:5, name:"Ivan", value:'5'}
+    ]
     const [collapsed, setCollapsed]=useState<boolean>(false)
     const [rating, setRating]=useState<RatingValueType>(1)
     const [status, setStatus]=useState<boolean>(false)
+    const [valueTitle, setvalueTitle]=useState('')
+    const [valueUsers, setValueUsers]=useState('Users')
+
+
+
+    useEffect(()=>{
+        let getValueTitle=localStorage.getItem('Title value')
+        if(getValueTitle){
+            setvalueTitle(JSON.parse(getValueTitle))
+        }
+    },[])
+    useEffect(()=>{
+        localStorage.setItem('Title value',JSON.stringify(valueTitle))
+    },[valueTitle])
+
 
     const changeCollapse=()=>setCollapsed(!collapsed)
     const changeRating=(num:RatingValueType)=>setRating(num)
     const changeStatus=(st:boolean)=>setStatus(st)
+    const changeTitle=(value:string)=>setvalueTitle(value)
+    const changeValueUsers=(value:string)=>setValueUsers(value)
 
     return (
         <div>
             <PageTitle title={'This is APP component!'}/>
             <PageTitle title={'Let\'s go'}/>
+            <hr/>
             Article 1
             <UnControlledOnOff/>
             <UnControlledAccordion titleValue={'Menu 1'}/>
             <UnControlledRating/>
-
+            <hr/>
             <Accordion
-                titleValue={'Menu 1'}
+                titleValue={`Menu 1 ${valueTitle}`}
                 collapsed={collapsed}
                 onChange={changeCollapse}
+                items={items}
+                changeTitle={changeTitle}
             />
             <Rating
                 value={rating}
@@ -41,6 +68,13 @@ function App() {
             <OnOff
                 status={status}
                 changeStatus={(st)=>changeStatus(st)}
+            />
+            <hr/>
+            <Select
+                title={'Users'}
+                items={items}
+                valueUsers={valueUsers}
+                callback={changeValueUsers}
             />
         </div>
     );
