@@ -34,9 +34,9 @@ export const Select = (props: SelectPropsType) => {
                 })}
             </select>
             :
-            <div onDoubleClick={onDoubleClickHandler}>
+            <span onDoubleClick={onDoubleClickHandler}>
                 {props.valueUsers}
-            </div>
+            </span>
     )
         ;
 };

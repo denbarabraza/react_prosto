@@ -1,0 +1,21 @@
+.select span.main{
+    border: 1px solid black;
+    display: inline-block;
+    min-height: 20px;
+    min-width: 40px;
+    text-align: center;
+    padding: 5px;
+}
+
+.selectItems{
+    border: 1px solid black;
+    position: absolute;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+
+.item.selected{
+    background: #61dafb;
+    color: white;
+}
