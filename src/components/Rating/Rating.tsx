@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import {RatingValueType} from "../UnControlledRating/UnControlledRating";
 
 export type RatingPropsType = {
@@ -9,9 +9,8 @@ export type RatingPropsType = {
     onClick: (value:RatingValueType)=>void;
 }
 
-export function Rating(props: RatingPropsType) {
+export const Rating= memo((props: RatingPropsType)=> {
     console.log("Rating rendering...")
-
     return (
         <div>
             <Star selected={props.value > 0} onClick={()=>props.onClick(1)}/>
@@ -21,17 +20,17 @@ export function Rating(props: RatingPropsType) {
             <Star selected={props.value > 4} onClick={()=>props.onClick(5)}/>
         </div>
     );
-}
+})
 
 type StarPropsType = {
     selected: boolean
     onClick: ()=>void
 }
 
-const Star=(props: StarPropsType)=>{
+const Star=memo((props: StarPropsType)=>{
     return(
         <span onClick={props.onClick}>
             {props.selected ? <b>star </b>:" star"}
         </span>
     )
-}
+});

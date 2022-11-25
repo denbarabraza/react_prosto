@@ -1,4 +1,4 @@
-import React, {useState, KeyboardEvent, useEffect} from 'react';
+import React, {useState, KeyboardEvent, useEffect, memo} from 'react';
 import {ItemsPropsType} from "../Accordion/Accordion";
 import s from './SelectCustom.module.css'
 
@@ -8,13 +8,13 @@ export type SelectCustomPropsType = {
     callback: (value: string) => void
 }
 
-export const SelectCustom: React.FC<SelectCustomPropsType> = (
+export const SelectCustom: React.FC<SelectCustomPropsType> =memo( (
     {
         items,
         valueSC,
         callback
     }) => {
-
+    console.log('SelectCustom rendering')
     const [toggle, setToggle] = useState(true)
     const [hoveredValue, setHoveredValue] = useState(valueSC)
 
@@ -89,4 +89,4 @@ export const SelectCustom: React.FC<SelectCustomPropsType> = (
             </div>
         </div>
     );
-};
+});

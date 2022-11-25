@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useReducer} from "react";
+import {unControlledAccordionAC, unControlledAccordionReducer} from "../../stories/redux/unControlledAccordionReducer";
 
 type AccordionPropsType = {
     titleValue: string;
@@ -6,9 +7,10 @@ type AccordionPropsType = {
 
 export function UnControlledAccordion(props: AccordionPropsType) {
 
-    const [toggle, setToggle]=useState(false)
+    //const [toggle, setToggle]=useState(false)
+    const [toggle, dispatch]=useReducer(unControlledAccordionReducer,false)
 
-    const onClickToggleHandler=()=>setToggle(!toggle)
+    const onClickToggleHandler=()=>dispatch(unControlledAccordionAC())
 
       return (
         <div>

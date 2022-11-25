@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, memo, useState} from 'react';
 import {ItemsPropsType} from "../Accordion/Accordion";
 
 export type SelectPropsType = {
@@ -8,8 +8,8 @@ export type SelectPropsType = {
     callback:(value:string)=>void
 }
 
-export const Select = (props: SelectPropsType) => {
-
+export const Select =memo((props: SelectPropsType) => {
+    console.log('My select rendering')
     const [editMode, setEditMode] = useState(false)
     const onDoubleClickHandler=()=>{
         setEditMode(!editMode)
@@ -39,6 +39,6 @@ export const Select = (props: SelectPropsType) => {
             </span>
     )
         ;
-};
+});
 
 export default Select;

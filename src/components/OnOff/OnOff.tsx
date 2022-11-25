@@ -1,11 +1,13 @@
-import React from "react";
+import React, {memo} from "react";
 
 export type OnOFPropsType = {
     status: boolean
     changeStatus: (st:boolean) => void
 }
 
-export const OnOff: React.FC<OnOFPropsType> = (props) => {
+export const OnOff: React.FC<OnOFPropsType> =memo( (props) => {
+
+    console.log('OnOff rendering')
 
     const OnStyle = {
         width: '30px',
@@ -47,4 +49,4 @@ export const OnOff: React.FC<OnOFPropsType> = (props) => {
             <div style={indicatorStyle}></div>
         </div>
     )
-}
+})

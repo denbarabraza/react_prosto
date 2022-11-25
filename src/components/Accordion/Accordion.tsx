@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 
 export type ItemsPropsType={
     id:number
@@ -16,8 +16,8 @@ export type AccordionPropsType = {
     changeTitle:(value:string)=>void
 }
 
-export function Accordion(props: AccordionPropsType) {
-
+export const Accordion=memo((props: AccordionPropsType)=> {
+    console.log('Accordion rendering')
     return (
         <div>
             <AccordionTitle
@@ -32,7 +32,7 @@ export function Accordion(props: AccordionPropsType) {
             {/*//если true, то body не отрисуется, значит свернут*/}
         </div>
     );
-}
+})
 
 
 type AccordionTitlePropsType = {
