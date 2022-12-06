@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {RatingValueType} from "../UnControlledRating/UnControlledRating";
 import {action} from "@storybook/addon-actions";
 import {Story} from "@storybook/react";
-import Select, {SelectPropsType} from "./Select";
+import {Select, SelectPropsType} from "./Select";
+
 
 export default {
     title: 'component/Select stories',
