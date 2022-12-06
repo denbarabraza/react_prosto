@@ -40,5 +40,3 @@ export const Select =memo((props: SelectPropsType) => {
     )
         ;
 });
-
-export default Select;

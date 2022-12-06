@@ -4,7 +4,7 @@ import {Accordion} from "./components/Accordion/Accordion";
 import {RatingValueType} from "./components/UnControlledRating/UnControlledRating";
 import {Rating} from "./components/Rating/Rating";
 import {OnOff} from "./components/OnOff/OnOff";
-import Select from "./components/Select/Select";
+import {Select} from "./components/Select/Select";
 import {SelectCustom} from "./components/SelectCustom/SelectCustom";
 
 
